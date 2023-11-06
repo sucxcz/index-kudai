@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>LIKES</title>
+  <style>
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap');
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+}
+
+    .post-container {
+      display: flex;
+      flex-wrap: wrap;
+    }
+    .post {
+      border: 1px solid #ccc;
+      margin: 10px;
+      padding: 10px;
+      width: 300px;
+      background-color: #f9f9f9;
+    }
+    .like-button {
+      background-color: #3498db;
+      color: #fff;
+      border: none;
+      padding: 5px 10px;
+      cursor: pointer;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="post-container">
+    <div class="post">
+      <img src="HarryPotter_WB_F4_HarryPotterMidshot_Promo_080615_Port.jpg" alt="" style="max-width: 200px;"> 
+      <h2>HARRY POTTER</h2>
+      <p>BOOK ABOUT KID NAMED HARRY THAT KILLS WHITE BOLD MAN</p>
+      <button class="like-button">LIKE</button>
+    </div>
+    <div class="post">
+      <img src="IMG_6499 copy.png" alt="" style="max-width: 200px;">
+      <h2>RAMIK</h2>
+      <p>BOOK ABOUT RAMIK </p>
+      <button class="like-button">LIKE</button>
+    </div>
+  </div>
+  <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+  <script>
+    const e = React.createElement;
+    class LikeButton extends React.Component {
+      constructor(props) {
+        super(props);
+        this.state = { liked: false };
+      }
+      render() {
+        return e(
+          'button',
+          {
+            className: 'like-button',
+            onClick: () => this.setState({ liked: !this.state.liked }),
+          },
+          this.state.liked ? 'LIKED' : 'LIKE'
+        );
+      }
+    }
+    const likeButtons = document.querySelectorAll('.like-button');
+    likeButtons.forEach((button) => {
+      const container = button.parentElement;
+      ReactDOM.render(e(LikeButton), button);
+    });
+  </script>
+</body>
+</html>
